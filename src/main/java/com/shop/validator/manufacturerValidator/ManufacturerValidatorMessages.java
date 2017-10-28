@@ -1,0 +1,12 @@
+package com.shop.validator.manufacturerValidator;
+
+/**
+ * Created by ooo on 6/24/2017.
+ */
+public interface ManufacturerValidatorMessages {
+    String EMPTY_MANUFACTURERNAME_FIELD = "EMPTY MANUFACTUR NAME FIELD";
+    String MANUFACTURERNAME_EXIST = "MANUFACTURER NAME EXIST";
+    String EMPTY_MANUFACTURERDESCRIPTION_FIELD = "EMPTY MANUFACTUR DESCRIPTION FIELD";
+    String MANUFACTURERDESCRIPTION_EXIST = "MANUFACTURER DESCRIPTION EXIST";
+
+}

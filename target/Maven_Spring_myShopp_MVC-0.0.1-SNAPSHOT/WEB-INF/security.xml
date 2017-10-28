@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <import resource="applicationContext.xml"/>
+
+    <security:http use-expressions="true">
+        <security:form-login login-page="/logIn" login-processing-url="/login"
+                             default-target-url="/"
+                             authentication-failure-forward-url="/failureLogin"/>
+
+        <security:logout logout-url="/logout" logout-success-url="/" />
+
+        <security:intercept-url pattern="/country"       access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/city"          access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/manufacturer"  access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/product"       access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/property"      access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/sex"           access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/specefication" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/guarantee"     access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/speceficationType"  access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/updateCountry"      access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/updateCity"         access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/updateManufacturer" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/updateProduct"      access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/updateProperty"     access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/updateSex"          access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/updateSpecefication"     access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/updateSpeceficationType" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/updateGuarantee"         access="hasRole('ROLE_ADMIN')"/>
+
+    </security:http>
+
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="B" password="1" authorities="ROLE_ADMIN"/>
+            </security:user-service>
+        </security:authentication-provider>
+
+        <security:authentication-provider user-service-ref="userDetailsService">
+            <security:password-encoder ref="encoder"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <!--<bean id="userServiceImpl" class="com.shop.serviceImpl.UserServiceImpl"/>-->
+
+    <bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+    </bean>
+
+</beans>
